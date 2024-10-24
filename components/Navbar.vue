@@ -1,6 +1,6 @@
 <template>
   <header
-    class="flex justify-center w-full py-2 px-4 lg:py-5 lg:px-6 bg-primary-700 border-b border-neutral-200"
+    class="flex justify-center w-full py-2 px-4 lg:py-5 lg:px-6 bg-primary-700 border-b border-neutral-200 z-50"
   >
     <div
       class="flex flex-wrap lg:flex-nowrap items-center flex-row justify-start h-full max-w-[1536px] w-full"
@@ -141,26 +141,7 @@ const logoutFun = async () => {
   await navigateTo('/');
 };
 
-const actionItems = [
-  {
-    icon: SfIconShoppingCart,
-    ariaLabel: 'Cart',
-    role: 'button',
-    label: '',
-  },
-  {
-    icon: SfIconFavorite,
-    ariaLabel: 'Wishlist',
-    role: 'button',
-    label: '',
-  },
-  {
-    label: 'Log in',
-    icon: SfIconPerson,
-    ariaLabel: 'Log in',
-    role: 'login',
-  },
-];
+
 
 const inputValue = ref('');
 
@@ -168,3 +149,5 @@ const search = () => {
   alert(`Successfully found 10 results for ${inputValue.value}`);
 };
 </script>
+
+
