@@ -16,7 +16,13 @@ declare global{
       name: string;
       email: string;
       password: string;
+      password_confirmation: string;
   
+    }
+
+    interface ForgoetPassowrdform{
+      email: string;
+
     }
   
     interface validationErrors{

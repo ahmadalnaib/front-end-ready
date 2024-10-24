@@ -11,8 +11,16 @@ export const useAuth = ()  => {
     });
       
     }
+
+   async function forgotPassword(form: ForgoetPassowrdform): Promise<void>{
+    
+    return await sanctumFetch('/forgot-password', {
+      method: 'POST',
+      body: form,
+    });
+  }
   
-    async function updateProfile(form: profileForm): Promise<void>{
+  async function updateProfile(form: profileForm): Promise<void>{
       
   return await sanctumFetch('/user/profile-information', {
     method: 'PUT',
@@ -23,7 +31,8 @@ export const useAuth = ()  => {
   
     return{
       register,
-      updateProfile
+      updateProfile,
+      forgotPassword,
     }
   
   }
