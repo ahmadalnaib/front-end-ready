@@ -1,6 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
-  middleware: ['sanctum:guest'],
+ middleware:['sanctum:auth'],
+ title:'Forget Password'
 });
 
 const { forgotPassword } = useAuth();
