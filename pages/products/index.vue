@@ -13,7 +13,7 @@
                 alt="Product Image" 
                 class="w-full h-48 object-contain mb-4 rounded-lg" />
               
-              <h2 class="text-2xl font-semibold mb-2 text-gray-800">{{ product.artikelbezeichnung }}</h2>
+              <h2 class="text-2xl font-semibold mb-2 text-gray-800 truncate ">{{ product.artikelbezeichnung }}</h2>
               <!-- <p v-html="product.artikellangtext || product.artikelsondertext" class="text-gray-600 mb-4 flex-grow"></p>
               <p class="text-gray-600"><strong>Weight:</strong> {{ product.gewicht }} kg</p>
               <p class="text-gray-600"><strong>Row ID:</strong> {{ product.rowid }}</p>
