@@ -1,11 +1,11 @@
 <script setup lang="ts">
 definePageMeta({
- middleware:['sanctum:auth'],
+  middleware: ['sanctum:guest'],
  title:'Forget Password'
 });
 
 const { forgotPassword } = useAuth();
-const { refreshIdentity } = useSanctumAuth();
+
 
 
 const form = reactive<ForgoetPassowrdform>({
@@ -24,6 +24,8 @@ const submit = async () => {
     }
   }
 };
+
+
 </script>
 
 <template>
