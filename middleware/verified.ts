@@ -1,9 +1,11 @@
 import { useAuth } from '~/composables/useAuth';
 
 export default defineNuxtRouteMiddleware((to, from) => {
-  const { user } = useAuth();
+  const { refreshIdentity } = useSanctumAuth();
+  const  user  = useSanctumUser<User>();
 
-  if (!user || !user.email_verified_at) {
+  if (!user.value || !user.value.email_verified_at) {
     return navigateTo('/verify');
   }
+  return refreshIdentity();
 });

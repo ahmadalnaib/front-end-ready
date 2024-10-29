@@ -4,6 +4,8 @@ definePageMeta({
   middleware: ['sanctum:auth','verified'],
   title: 'Dashboard',
 });
+
+
 </script>
 
 <template>

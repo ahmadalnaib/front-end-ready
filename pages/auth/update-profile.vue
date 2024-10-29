@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { PhotoIcon, UserCircleIcon } from '@heroicons/vue/24/solid'
-import { set } from '~/node_modules/nuxt/dist/app/compat/capi';
+
 definePageMeta({
   layout: 'admin',
   middleware: ['sanctum:auth'],

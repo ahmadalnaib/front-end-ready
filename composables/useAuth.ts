@@ -1,6 +1,8 @@
 export const useAuth = ()  => {
 
     const sanctumFetch= useSanctumClient();
+
+    
   
     async function register(form: Registerform): Promise<void>{
   
