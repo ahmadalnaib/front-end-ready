@@ -1,23 +1,24 @@
 <template>
   <div class="bg-white">
     <div class=" ">
-      <div class="md:flex md:items-center md:justify-between">
-        <h2 class="text-2xl font-bold tracking-tight text-gray-900">Product Groups</h2>
-      </div>
+
 
       <div v-if="loading" class="text-gray-500 text-center">Loading...</div>
       <div v-if="error" class="text-red-500 text-center">{{ error }}</div>
       <div v-else>
         <nav class="navbar">
-          <ul class="nav-list">
-            <li v-for="group in productGroups" :key="group.productgroupid" class="nav-item">
-              <a href="#" class="nav-link">{{ parseBezeichnung(group.bezeichnung) }}</a>
-              <div class="dropdown-content">
-                <p v-for="id in (group.artikelids ? group.artikelids.split(',') : [])" :key="id">{{ id }}</p>
-              </div>
-            </li>
-          </ul>
-        </nav>
+  <ul class="nav-list">
+    <li v-for="group in productGroups" :key="group.productgroupid" class="nav-item">
+      <a href="#" class="nav-link">{{ parseBezeichnung(group.bezeichnung) }}</a>
+      <div class="dropdown-content">
+        <div v-if="group.childprodgroups && group.childprodgroups.childprodgroup" v-for="(child, childIndex) in group.childprodgroups.childprodgroup" :key="childIndex">
+        
+          <p>Product Group ID: {{ child.productgroupid }}</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</nav>
       </div>
     </div>
   </div>
@@ -42,13 +43,10 @@ const parseBezeichnung = (bezeichnung) => {
 onMounted(async () => {
   try {
     const response = await fetchProductGroups();
-    if (Array.isArray(response)) {
-      productGroups.value = response; // Assign the entire response if it's an array
+ 
+      productGroups.value = response; 
       console.log('response:', response);
-    } else {
-      error.value = 'Expected an array of products';
-      console.error('Unexpected response structure:', response);
-    }
+    
   } catch (err) {
     console.error('Error fetching products:', err);
     error.value = 'Error fetching products: ' + err.message;
