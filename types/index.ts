@@ -4,6 +4,18 @@ declare global{
       email: string;
       password: string;
     }
+    interface ForgortPasswordform{
+      email: string;
+   
+    }
+
+    interface passwordConfirmation{
+      email: string;
+      password: string;
+      password_confirmation: string,
+      token: string;
+   
+    }
   
     interface User{
       id: number;

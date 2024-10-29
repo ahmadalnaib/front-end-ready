@@ -10,12 +10,12 @@ export default defineNuxtConfig({
     },
   },
   devServer:{
-    host: 'http://shopp.test/'
+    host: 'http://localhost:8000/'
   },
   modules: ['nuxt-auth-sanctum','@storefront-ui/nuxt'],
   
   sanctum:{
-    baseUrl: 'http://shopp.test/', 
+    baseUrl: 'http://localhost:8000/', 
     redirect:{
       onLogin: '/dashboard',
       onAuthOnly: '/auth/login',
