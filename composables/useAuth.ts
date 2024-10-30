@@ -18,20 +18,20 @@ export const useAuth = ()  => {
   }
 
   async function sendEmailVerification(): Promise<any> {
-    return await sanctumFetch('email/verification-notification', {
+    return await sanctumFetch('/email/verification-notification', {
       method: 'POST',
     });
 }
 
  async function sendForgotPassword(form: ForgortPasswordform): Promise<any> {
-  return await sanctumFetch('forgot-password', {
+  return await sanctumFetch('/forgot-password', {
     method: 'POST',
     body:form,
   });
 }
 
 async function sendPasswordConfirmation(form: passwordConfirmation): Promise<any> {
-  return await sanctumFetch('reset-password', {
+  return await sanctumFetch('/reset-password', {
     method: 'POST',
     body:form,
   });

@@ -4,7 +4,7 @@ definePageMeta({
 });
 
 const { sendForgotPassword } = useAuth();
-const { refreshIdentity } = useSanctumAuth();
+
 
 const form = reactive<ForgortPasswordform>({
   email: '',
@@ -15,19 +15,17 @@ const successMessage = ref('');
 const sendForgotPasswordEmail = async () => {
   try {
     await sendForgotPassword(form);
-    successMessage.value = 'Check your email';
+    successMessage.value = 'We have emailed your password reset link.';
   } catch (e: any) {
     if (e.statusCode === 422) {
       errors.value = e.data.errors;
     }
   }
 
-  setTimeout(() => {
+  setTimeout(async() => {
     successMessage.value = '';
-  }, 3000);
-
-  await refreshIdentity();
-  await navigateTo({ path: '/auth/login' })
+    await navigateTo({ path: '/auth/login' });
+  }, 5000);
 
 };
 </script>

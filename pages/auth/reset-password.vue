@@ -5,7 +5,7 @@ definePageMeta({
 
 import { useRoute } from 'vue-router';
 const route = useRoute();
-const { refreshIdentity } = useSanctumAuth();
+
 const { sendPasswordConfirmation } = useAuth();
 
 const form = reactive<passwordConfirmation>({
@@ -20,20 +20,18 @@ const successMessage = ref('');
 const resetPassword = async () => {
   try {
     await sendPasswordConfirmation(form);
-    successMessage.value = 'Password updated successfully!';
+    successMessage.value = 'Your password has been reset.';
   } catch (e: any) {
     if (e.statusCode === 422) {
       errors.value = e.data.errors;
     }
   }
 
-  setTimeout(() => {
+  setTimeout(async() => {
     successMessage.value = '';
-  }, 3000);
-
     // refresh user
-  await refreshIdentity();
-  await navigateTo({ path: '/auth/login' })
+    await navigateTo({ path: '/auth/login' });
+  }, 5000); // Increased timeout duration to 10 seconds
 };
 </script>
 <template>
