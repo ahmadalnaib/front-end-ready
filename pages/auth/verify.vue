@@ -20,10 +20,11 @@
 
 <script setup lang="ts">
 definePageMeta({
+  layout: 'admin',
   middleware: ['sanctum:auth'],
 });
 
-const { sendEmailVerification } = useSendEmailVerification();
+const { sendEmailVerification } = useAuth();
 const  user  = useSanctumUser<User>();
 
 

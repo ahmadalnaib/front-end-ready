@@ -47,7 +47,7 @@ const submit = async () => {
           </div>
 
           <div class="text-sm leading-6">
-            <nuxt-link to="/forgot-password" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</nuxt-link>
+            <nuxt-link to="/auth/forgot-password" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</nuxt-link>
           </div>
         </div>
           <button type="submit" class="w-full px-4 py-2 font-bold text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring focus:ring-indigo-200">Login</button>

@@ -1,38 +1,47 @@
 <script setup lang="ts">
 definePageMeta({
   middleware: ['sanctum:guest'],
- title:'Forget Password'
 });
 
-const { forgotPassword } = useAuth();
+const { sendForgotPassword } = useAuth();
+const { refreshIdentity } = useSanctumAuth();
 
-
-
-const form = reactive<ForgoetPassowrdform>({
+const form = reactive<ForgortPasswordform>({
   email: '',
 });
-
-
 const errors = ref<validationErrors>({});
+const successMessage = ref('');
 
-const submit = async () => {
+const sendForgotPasswordEmail = async () => {
   try {
-    await forgotPassword(form);
+    await sendForgotPassword(form);
+    successMessage.value = 'Check your email';
   } catch (e: any) {
     if (e.statusCode === 422) {
       errors.value = e.data.errors;
     }
   }
+
+  setTimeout(() => {
+    successMessage.value = '';
+  }, 3000);
+
+  await refreshIdentity();
+  await navigateTo({ path: '/auth/login' })
+
 };
-
-
 </script>
-
 <template>
-  <div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="flex items-center justify-center min-h-screen bg-gray-50">
     <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
-      <h2 class="text-2xl font-bold text-center">Forgot Password</h2>
-      <form @submit.prevent="submit">
+      <div
+          v-if="successMessage"
+          class="mt-4 p-4 bg-green-100 text-green-800 rounded"
+        >
+          {{ successMessage }}
+        </div>
+      <h2 class="text-2xl font-bold text-center">Recover password</h2>
+      <form @submit.prevent="sendForgotPasswordEmail">
         <div class="space-y-4">
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700"
@@ -48,23 +57,15 @@ const submit = async () => {
               {{ errors.email[0] }}
             </p>
           </div>
+
           <button
             type="submit"
             class="w-full px-4 py-2 font-bold text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring focus:ring-indigo-200"
           >
-            Send Password Reset Link
+            Recover password
           </button>
         </div>
       </form>
-      <p class="mt-10 text-center text-sm text-gray-500">
-        Not a member?
-        {{ ' ' }}
-        <nuxt-link
-          :to="`/auth/register`"
-          class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
-          >Register Here</nuxt-link
-        >
-      </p>
     </div>
   </div>
 </template>

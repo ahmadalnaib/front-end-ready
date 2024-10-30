@@ -5,7 +5,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
   const  user  = useSanctumUser<User>();
 
   if (!user.value || !user.value.email_verified_at) {
-    return navigateTo('/verify');
+    return navigateTo('/auth/verify');
   }
   return refreshIdentity();
 });
